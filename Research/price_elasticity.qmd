@@ -1,0 +1,82 @@
+---
+format:
+  html: 
+    embed-resources: true
+    self-contained-math: true
+    toc: true
+---
+
+## Price Elasticity
+
+Price Elasticity is a measurement of changing quantity due to changing prices.
+
+We will use $\eta_p$ to mean price elasticity.
+
+-   $|\eta_p| < 1$ is an elastic product\
+-   $|\eta_p| \le 1$ is an inelastic product
+
+Price elasticity is defined as
+
+$$\eta_p = \frac{\%\Delta{Q}}{\%\Delta{P}}$$ The midpoiont formula for elasticity is more commonly used, and is:
+
+$$
+\%\Delta{Q}=\frac{q_2-q_1}{(q_2+q_1)/2} \\
+\%\Delta{Y}=\frac{p_2-p_1}{(p_2+p_1)/2} 
+$$
+
+### Calculating by Hand
+
+Give the following table:
+
+```{r}
+sales = data.frame(price = c(10, 15), qty = c(120, 100))
+sales
+```
+
+We would calculate $\eta_p$ as
+
+```{r}
+((sales$qty[2] - sales$qty[1]) / ( (sales$qty[2] + sales$qty[1]) / 2 )) /
+((sales$price[2] - sales$price[1]) / ( (sales$price[2] + sales$price[1]) / 2 ))
+```
+
+As a function:
+
+```{r}
+pct_delta <- function(x1, x2) {
+  (x2 - x1) / mean(c(x2, x1))
+}
+
+elasticity_p <- function(prices, qty) {
+   pct_delta(qty[1], qty[2]) / pct_delta(prices[1], prices[2]) 
+}
+
+elasticity_p(sales$price, sales$qty)
+
+```
+
+### Using a Regression
+
+$$\eta_p = \beta_{price}(\frac{\bar{P}}{\bar{Q}})$$
+
+Using our above sample:
+
+```{r}
+model <- lm(qty ~ price, data = sales)
+
+model$coefficients[["price"]] * ( mean(sales$price) / mean(sales$qty) )
+
+```
+
+### Logarithmic Transformation
+
+$$
+log(Y) = a + \beta{x} \\ d(log_y)=\beta dX \\ \frac{dY}{y} = \beta{}dX \\ 100b = \frac{\%\Delta Y}{Unit\ \Delta X}
+$$
+
+```{r}
+model_log <- lm(log(qty) ~ price, data = sales)
+
+model_log$coefficients[["price"]]
+```
+

@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "RCKY Analysis"
+  search: true
+  sidebar:
+    contents: auto
+  # navbar:
+  #   left:
+  #     - href: index.qmd
+  #       text: Home
+  #     - about.qmd
+
+format:
+  html:
+    theme: solar
+    css: styles.css
+    toc: true
+
+
+
