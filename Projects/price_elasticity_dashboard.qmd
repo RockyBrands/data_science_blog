@@ -223,6 +223,6 @@ co = coefficients(model)
 intercept = -co[2] / (2*co[3])
 
 p1 + geom_vline(aes(xintercept = intercept), linetype = 2)
-``` 
+```
 
 Our intercept gives us the optimal change in price to maximize profitability. `r scales::dollar(intercept)`. We can add this intercept to the current price to get the optimal pricing strategy. `r scales::dollar(x[.N, (mean_price_base)]+intercept)` 
