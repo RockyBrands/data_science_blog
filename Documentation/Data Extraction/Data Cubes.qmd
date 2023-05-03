@@ -45,7 +45,7 @@ And now build your table. Be sure to pick the proper measure group.
 
 ![](screen_builder.png)
 
-Hot OK and you have your query string.
+Hit OK and you have your query string.
 
 I included a function `mdx_string()` in the lehighCube package. If given no args it will take the clipboard as input. Otherwise, give it the string. The idea is to clean up and give sensible formatting. 
 
