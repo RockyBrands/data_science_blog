@@ -10,7 +10,7 @@ You'll have to do this on a Windows machine unfortunately, as you'll need some o
 
 To make a cube connection, it's recommended that a project calling such get its own venv to call with. You absolutely can make a global venv for this tool, but for the sake of the author, I just create a new environment to contain each project. If you go thr route of the `lehighCube` package, you can simply call `lehighCube::py_env()` and follow the prompts. Otherwise, assuming RStudio you'll want to go through the reticulate route. I will simply copy and paste the `py_env` source below as it should be a comprehensive guide to setting up a project folder. 
 
-```{r}
+```{R}
 #| eval: false
 
 if (interactive() && !reticulate::virtualenv_exists(getwd())) {
